@@ -25,7 +25,7 @@ import CountdownTimer from "@/components/CountdownTimer";
 import DeadlineRegistry from "@/components/DeadlineRegistry";
 
 export default async function Dashboard() {
-  const streams = await prisma.stream.findMany();
+  const streams = await prisma.stream.findMany() as any[];
   
   // pick Polycet as featured
   const featuredStream = streams.find(s => s.slug === 'polycet') || streams[0];

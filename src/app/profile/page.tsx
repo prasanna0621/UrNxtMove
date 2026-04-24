@@ -278,7 +278,7 @@ export default function ProfilePage() {
                
                {savedStreams.length > 0 ? (
                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '20px' }}>
-                    {savedStreams.map(stream => (
+                    {(savedStreams as any[]).map(stream => (
                        <Link key={stream.id} href={`/stream/${stream.slug}`} style={{ textDecoration: 'none' }}>
                           <div className="glass-card" style={{ padding: '30px', background: 'var(--card-bg)', border: '1px solid var(--card-border)', transition: 'all 0.3s ease' }}>
                              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
