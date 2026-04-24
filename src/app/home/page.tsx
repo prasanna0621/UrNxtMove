@@ -133,7 +133,7 @@ export default async function Dashboard() {
               gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
               gap: '20px'
             }}>
-              {streams.map((stream: { id: string, name: string, description: string, duration: string, marketDemand: string }) => {
+              {streams.map((stream: any) => {
                 const streamImages: Record<string, string> = {
                   mpc: "/stream_mpc.jpg",
                   bipc: "/stream_bipc.jpg",
