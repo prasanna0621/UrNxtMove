@@ -153,7 +153,7 @@ export default function CollegesPage() {
          <main style={{ display: 'grid', gridTemplateColumns: activeTab === 'colleges' ? 'repeat(auto-fill, minmax(350px, 1fr))' : '1fr', gap: '30px' }}>
             {activeTab === 'colleges' ? (
               filteredItems.length > 0 ? (
-                (filteredItems as Array<{ id: string, name: string, location: string, tier: string, streams: string[] }>).map((college, i) => (
+                (filteredItems as any[]).map((college, i) => (
                   <div key={i} className="glass-card college-card-premium" style={{ display: 'flex', flexDirection: 'column', background: 'var(--card-bg)', borderRadius: '28px', border: '1px solid var(--card-border)', overflow: 'hidden', transition: 'all 0.3s' }}>
                      <div style={{ height: '80px', background: `linear-gradient(135deg, ${college.tier === 'Global Top' ? '#f59e0b' : 'var(--primary)'} 0%, ${college.tier === 'Global Top' ? '#d97706' : 'var(--primary-hover)'} 100%)`, position: 'relative' }}>
                         <div style={{ position: 'absolute', top: '20px', right: '20px', background: 'rgba(255,255,255,0.2)', backdropFilter: 'blur(10px)', color: 'white', padding: '6px 14px', borderRadius: '50px', fontSize: '0.7rem', fontWeight: 900, textTransform: 'uppercase' }}>
@@ -193,7 +193,7 @@ export default function CollegesPage() {
               )
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
-                  {(filteredItems as Array<{ name: string, tag: string, provider: string, eligibility: string, amount: string, deadline: string }>).map((scholarship, i) => (
+                  {(filteredItems as any[]).map((scholarship, i) => (
                    <div key={i} className="glass-card" style={{ padding: '35px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '30px', background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '28px', transition: 'all 0.3s' }}>
                       <div style={{ display: 'flex', gap: '25px', alignItems: 'center', flex: 1 }}>
                          <div style={{ background: 'rgba(16, 185, 129, 0.08)', color: '#10b981', padding: '16px', borderRadius: '18px' }}>
