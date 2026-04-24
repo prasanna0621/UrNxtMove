@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String?
+  bio       String?
+  interests String?
+  achievements String?
+  profileImage String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // A user can save multiple streams
+  savedStreams Stream[]
+}
+
+model Stream {
+  id                  String   @id @default(uuid())
+  slug                String   @unique
+  name                String
+  description         String
+  detailedDescription String   @default("")
+  tags                String
+  benefits            String   @default("")
+  furtherStudies      String   @default("")
+  competitiveExams    String   @default("")
+  salaryRange         String   @default("")
+  
+  careerPaths   CareerPath[]
+  upcomingRoles UpcomingRole[]
+  users         User[]
+
+  pros          StreamDetailPro[]
+  cons          StreamDetailCon[]
+  pathwaySteps  StreamPathwayStep[]
+}
+
+model StreamDetailPro {
+  id       String @id @default(uuid())
+  content  String
+  streamId String
+  stream   Stream @relation(fields: [streamId], references: [id], onDelete: Cascade)
+}
+
+model StreamDetailCon {
+  id       String @id @default(uuid())
+  content  String
+  streamId String
+  stream   Stream @relation(fields: [streamId], references: [id], onDelete: Cascade)
+}
+
+model StreamPathwayStep {
+  id       String @id @default(uuid())
+  step     String
+  desc     String
+  order    Int    @default(0)
+  streamId String
+  stream   Stream @relation(fields: [streamId], references: [id], onDelete: Cascade)
+}
+
+model CareerPath {
+  id          String @id @default(uuid())
+  title       String
+  description String
+  icon        String?
+  
+  streamId    String
+  stream      Stream @relation(fields: [streamId], references: [id], onDelete: Cascade)
+}
+
+model UpcomingRole {
+  id          String @id @default(uuid())
+  title       String
+  description String
+  trend       String
+  icon        String?
+  
+  streamId    String
+  stream      Stream @relation(fields: [streamId], references: [id], onDelete: Cascade)
+}
