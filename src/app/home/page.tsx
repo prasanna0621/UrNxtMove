@@ -24,6 +24,8 @@ import {
 import CountdownTimer from "@/components/CountdownTimer";
 import DeadlineRegistry from "@/components/DeadlineRegistry";
 
+export const dynamic = 'force-dynamic';
+
 export default async function Dashboard() {
   const streams = await prisma.stream.findMany() as any[];
   
